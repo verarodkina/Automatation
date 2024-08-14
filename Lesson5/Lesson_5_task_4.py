@@ -11,15 +11,15 @@ try:
     chrome.get("http://the-internet.herokuapp.com/entry_ad")
     firefox.get("http://the-internet.herokuapp.com/entry_ad")
 
-    wait = WebDriverWait (chrome, 10)
+    wait = WebDriverWait(chrome, 10)
     modal_window = wait.until(
-        EC.visibility_of_element_located((By.CSS_CELECTOR, "modal")))
+        EC.visibility_of_element_located((By.CSS_SELECTOR, "modal")))
     close_button = wait.until(EC.element_to_be_clickable(
         (By.CSS_CELECTOR, "modal-footer")))
     
-    wait = WebDriverWait (firefox, 10)
+    wait = WebDriverWait(firefox, 10)
     modal_window = wait.until(
-        EC.visibility_of_element_located((By.CSS_CELECTOR, "modal")))
+        EC.visibility_of_element_located((By.CSS_SELECTOR, "modal")))
     close_button = wait.until(EC.element_to_be_clickable(
         (By.CSS_CELECTOR, "modal-footer")))
     time.sleep(3)
@@ -27,7 +27,7 @@ try:
     time.sleep(2)
 
 except Exception as ex:
-    print (ex)
+    print(ex)
 finally:
     chrome.quit()
     firefox.quit() 

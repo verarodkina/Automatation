@@ -26,7 +26,7 @@ try:
         print(countС)
         print(countF)
 except Exception as ex:
-    print (ex)
+    print(ex)
 finally:
     chrome.quit()
     firefox.quit()

@@ -18,8 +18,8 @@ try:
         "xpath", "//button[contains(concat(' ', normalize-space(@class), ' '), ' btn-primary ')]").click()
         sleep(2)
     
-        chrome.switch_to.alert.accept ()
-        firefox.switch_to.alert.accept ()
+        chrome.switch_to.alert.accept()
+        firefox.switch_to.alert.accept()
 except Exception as ex:
     print(ex)
 finally:

@@ -19,13 +19,13 @@ try:
         firefox_delete_buttons = chrome.find_elements (
         "xpath", '//button [text ()="Delete"]')
     
-    print (
+    print(
        f"список кнопок Delete в Chrome: {len(chrome_delete_buttons)}")
-    print (
+    print(
         f"список кнопок Delete в firefox: {len(firefox_delete_buttons)}")
     
 except Exception as ex:
-    print (ex)
+    print(ex)
 finally:
     chrome.quit()
     firefox.quit()
