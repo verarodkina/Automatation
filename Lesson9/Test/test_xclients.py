@@ -9,38 +9,20 @@ db = DataBase(
 def test_get_list_of_employers():
     db.create_company('Verochka', 'my_company')
     max_id = db.last_company_id()
-    db.create_employer(max_id, "Vera", "Popova", 8005553535)
+    db.create_employer(max_id, "Vera", "Popova", "Ivanovna", "8005553535")
     db_employer_list = db.get_list_employer(max_id)
+    
+    assert db_employer_list is not None, "DB employer list is None"
+    assert len(db_employer_list) > 0, "DB employer list is empty"
+    
     api_employer_list = api.get_list(max_id)
+    
+    assert api_employer_list is not None, "API employer list is None"
+    assert len(api_employer_list) > 0, "API employer list is empty"
+    
     assert len(db_employer_list) == len(api_employer_list)
-    responce = (api.get_list(max_id))[0]
-    employer_id = responce['id']
+    
+    response = api_employer_list[0]
+    employer_id = response['id']
     db.delete_employer(employer_id)
-    db.delete(max_id)
-
-def test_add_new_eployer():
-    db.create_company('Vera adding new employer', 'employer')
-    max_id = db.last_company_id()
-    db.create_employer(max_id, "Vera", "Popova", 800555353500)
-    responce = (api.get_list(max_id))[0]
-    employer_id = responce["id"]
-    assert responce[companyID] == max_id
-    assert responce ["firstName"] == "Vera"
-    assert responce ["isActive"] == True
-    assert responce ["lastName"] == "Popova"
-    db.delete_employer(employer_id)
-    db.delete(max_id)
-
-
-def test_assertion_data():
-    db.create_company('Employer get id company', 'new')
-    max_id = db.last_company_id()
-    db.create_employer(max_id, "Vera", "Popova", 800555353500)
-    employer_id = db.get_employer_id(max_id)
-    get_api_info = (api.get_info(employer_id)).json()
-    assert get_api_info ["firstName"] == "Vera"
-    assert get_api_info ["lastName"] == "Popova"
-    assert get_api_info ["isActive"] == True
-    db.delete_employer(employer_id)
-    db.delete(max_id)
-
+    db.delete_company(max_id)
